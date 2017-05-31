@@ -1,0 +1,19 @@
+{
+  "name": "model.js",
+  "version": "1.0.0",
+  "description": "Binds an `input`, `select`, `textarea` (or custom form control) to a property",
+  "main": "bind.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewmcwatters/model.js.git"
+  },
+  "author": "Andrew McWatters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewmcwatters/model.js/issues"
+  },
+  "homepage": "https://github.com/andrewmcwatters/model.js#readme"
+}
