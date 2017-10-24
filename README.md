@@ -2,9 +2,9 @@
 Binds an `input`, `select`, `textarea` (or custom form control) to a property
 
 ## Install
-### npm
+### yarn
 ```shell
-npm install andrewmcwatters/model.js
+yarn add andrewmcwatters/model.js
 ```
 
 ## Usage
