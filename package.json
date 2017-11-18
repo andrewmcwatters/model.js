@@ -1,6 +1,6 @@
 {
   "name": "model.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Binds an `input`, `select`, `textarea` (or custom form control) to a property",
   "main": "bind.js",
   "scripts": {
