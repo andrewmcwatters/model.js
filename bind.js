@@ -1,20 +1,18 @@
-(function() {
-  'use strict';
+'use strict';
 
-  class Bind extends Directive {
-    onInit() {
-      var el         = this.element;
-      var model      = el.dataset.bind;
-      el.textContent = controller[model];
+class Bind extends Directive {
+  oninit() {
+    let el         = this.element;
+    let model      = el.dataset.bind;
+    el.textContent = controller[model];
 
-      document.addEventListener('modelchange', function(e) {
-        var model = el.dataset.bind;
-        if (e.detail.property === model) {
-          el.textContent = e.detail.value;
-        }
-      });
-    }
+    document.addEventListener('modelchange', (e) => {
+      let model = el.dataset.bind;
+      if (e.detail.property === model) {
+        el.textContent = e.detail.value;
+      }
+    });
   }
+}
 
-  directives.define('bind', Bind);
-})();
+directives.define('bind', Bind);

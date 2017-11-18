@@ -1,37 +1,37 @@
-(function() {
-  'use strict';
+'use strict';
 
-  class DirectiveRegistry {
-    constructor() {
-      this.directives = {};
-    }
-
-    define(name, constructor) {
-      this.directives[name] = constructor;
-    }
-
-    get(name) {
-      return this.directives[name];
-    }
+class DirectiveRegistry {
+  constructor() {
+    this._directives = {};
   }
 
-  window.directives = new DirectiveRegistry();
-
-  class Directive {
-    constructor(element) {
-      this.element = element;
-      this.onInit();
-    }
-
-    onInit() {}
+  define(name, constructor) {
+    this._directives[name] = constructor;
   }
 
-  window.Directive = Directive;
+  get(name) {
+    return this._directives[name];
+  }
+}
 
-  String.prototype.toKebabCase = function() {
-    return this.replace(/[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g, function(match) {
-      return '-' + match.toLowerCase();
-    });
+window.directives = new DirectiveRegistry();
+
+class Directive {
+  constructor(element) {
+    this.element = element;
+    this.oninit();
+  }
+
+  oninit() {}
+}
+
+window.Directive = Directive;
+
+{
+  function toKebabCase(str) {
+    return str.replace(/[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g, (match) =>
+      '-' + match.toLowerCase()
+    );
   };
 
   function initDirective(node, directive) {
@@ -39,14 +39,14 @@
       return;
     }
 
-    var name = directive.name.toKebabCase();
+    let name = toKebabCase(directive.name);
     if (node.dataset && node.dataset[name.substring(1)]) {
       new directive(node);
     }
 
-    var elements = node.querySelectorAll('[data' + name + ']');
-    for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
+    let elements = node.querySelectorAll('[data' + name + ']');
+    for (let i = 0; i < elements.length; i++) {
+      let element = elements[i];
       new directive(element);
     }
   }
@@ -56,10 +56,10 @@
       node = node.target;
     }
 
-    var directives = window.directives.directives;
-    for (var k in directives) {
+    let directives = window.directives._directives;
+    for (let k in directives) {
       if (directives.hasOwnProperty(k)) {
-        var directive = directives[k];
+        let directive = directives[k];
         initDirective(node, directive);
       }
     }
@@ -75,11 +75,11 @@
 
   ready(init);
 
-  var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
+  let observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
       Array.prototype.forEach.call(mutation.addedNodes, init);
     });
   });
 
   observer.observe(document.body, { childList: true, subtree: true });
-})();
+};

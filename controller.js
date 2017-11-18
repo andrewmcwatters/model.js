@@ -3,7 +3,7 @@
 class Controller {}
 
 window.controller = new Proxy(new Controller(), {
-  set: function(target, property, value) {
+  set: (target, property, value) => {
     target[property] = value;
     document.dispatchEvent(new CustomEvent('modelchange', {
       detail: { property, value }
