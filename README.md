@@ -4,7 +4,7 @@ Binds an `input`, `select`, `textarea` (or custom form control) to a property
 ## Install
 ### yarn
 ```shell
-yarn add andrewmcwatters/model.js
+yarn add andrewmcwatters/model.js#v1.0.5
 ```
 
 ## Usage
